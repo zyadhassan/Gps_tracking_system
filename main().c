@@ -1,0 +1,7 @@
+main(){
+
+
+printf("eddy gamd")
+
+
+}
