@@ -1,3 +1,3 @@
-
-printf("I'm not ORIGI");
-
+#include<iostream>
+usingnamespacestd;
+cout<<"Ahmed"<<;
