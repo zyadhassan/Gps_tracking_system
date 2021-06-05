@@ -73,17 +73,6 @@ if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of t
 }
 }
 }
-
-    void LCD_COMM(unsigned char command)
-{
-GPIO_PORTA_DATA_R = 0x00; //RS =0, E=0, RW=0
-GPIO_PORTB_DATA_R =command; //missed a (correcting done)
-GPIO_PORTA_DATA_R =0x80; //E=1 to secure command
-delay_micro(0);
-GPIO_PORTA_DATA_R =0x00;
-if(command <4) delay_milli(2); else delay_micro(37);
-    }
-    
 void delay_milli(int n){
 int i,j;
 for(i=0;i<n;i++){
@@ -98,12 +87,39 @@ for(j=0;j<3;j++)
 {}
 }
 
+
+    void LCD_COMM(unsigned char command)
+{
+GPIO_PORTA_DATA_R = 0x00; //RS =0(command)
+GPIO_PORTB_DATA_R =command; //data wich contain the command no.
+GPIO_PORTA_DATA_R =0x80; //E=1 for high
+delay_micro(0);
+GPIO_PORTA_DATA_R =0x00; //E=0 to law
+if(command <4) delay_milli(2); else delay_micro(37);  //from data sheet
+    }
+    
+
 //know we will make the data function of the lcd
 void LCD_DATA(unsigned char data) {
-    GPIO_PORTA_DATA_R = 0x20; //RS=1, E=0,RW=0
-    GPIO_PORTB_DATA_R = data;
-    GPIO_PORTA_DATA_R |= 0x80;
-    GPIO_PORTA_DATA_R = 0x00;
+    GPIO_PORTA_DATA_R = 0x20; //RS=1(data)
+    GPIO_PORTB_DATA_R = data; //data wich appear on the screen
+    GPIO_PORTA_DATA_R |= 0x80; // E high
+    GPIO_PORTA_DATA_R = 0x00; // E law
     delay_micro(0);
+
+}
+// A7 for Enable , A5 for RS , A6 for RW(=0)
+// portB for D0toD7
+    void LCD_INITIALIZATION(void){
+SYSCTL_RCGCGPIO_R |= 0x00; 
+SYSCTL_RCGCGPIO_R |= 0x03;
+GPIO_PORTA_DIR_R |=0xE0; //last 3 pins outputs
+GPIO_PORTA_DEN_R |=0xE0; //last 3 pins digital
+GPIO_PORTB_DIR_R |=0xFF; // all pins output
+GPIO_PORTB_DEN_R |=0xFF; //all pins digital
+LCD_COMM(0x38); //using 8_bit
+LCD_COMM(0x06); //shifting from right to lift automatically
+LCD_COMM(0x0F); //wake up display
+LCD_COMM(0x01); //clear the screen
 
 }
