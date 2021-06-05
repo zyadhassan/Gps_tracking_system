@@ -50,3 +50,29 @@ For Testing
 GPS_distance_between (30.02350, 31.178291, 30.003019, 31.177931) ;
 
 */
+int totalDis(){
+int x;
+if ((GPIO_PORTF_DATA_R&0x11)==0x01) //switch of pin 5
+   {
+x=1;
+
+}
+while (x){
+float long2=0.0;
+float lat2=0.0;
+
+float lat1=0.0 ;               //GPS_LAT()
+
+float long1= 0.0   ;       //GPS_LONG()
+float totalDistance=0.0;
+float distance =    GPS_distance_between(lat1,long1,lat2,long2);
+totalDistance=totalDistance+distance;
+long2=long1;
+lat2=lat1;
+if ((GPIO_PORTF_DATA_R&0x11)==0x10) {
+           x=0;
+           return totalDistance;
+
+}
+}
+}
