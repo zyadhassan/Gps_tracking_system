@@ -23,11 +23,11 @@ float radians(float n) {         // to be used in calculation of distance
     return n * 3.141592654 / 180; 
 }
 float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // return distancce between two points with coordinates
-  float distance = radians(long1-long2);     
-  float sdlong = sin(distance);
+  float distance = radians(long1-long2);         //difference between longs with radians
+  float sdlong = sin(distance);                 //we will prepare the parameters of the law 
   float cdlong = cos(distance);
-  lat1 = radians(lat1);
-  lat2 = radians(lat2);
+  lat1 = radians(lat1);              //lat1 in radians
+  lat2 = radians(lat2);                    //lat2 in radians 
   float slat1 = sin(lat1);
   float clat1 = cos(lat1);
   float slat2 = sin(lat2);
@@ -38,7 +38,7 @@ float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // 
   distance = sqrt(distance);
   float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
   distance = atan2(distance, denom);
-  return ( distance * 6372795);
+  return ( distance * 6372795);                   //finally we have the result of distance between two points 
 }
 /*
 For Testing 
