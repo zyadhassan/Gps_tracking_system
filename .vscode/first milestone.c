@@ -75,7 +75,7 @@ if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of t
     void LCD_COMM(unsigned char command)
 {
 GPIO_PORTA_DATA_R = 0x00; //RS =0, E=0, RW=0
-GPIO_PORTB_DATA_R =commnd; //missed a
+GPIO_PORTB_DATA_R =command; //missed a (correcint done)
 GPIO_PORTA_DATA_R =0x80; //E=1 to secure command
 delay_micro(0);
 GPIO_PORTA_DATA_R =0x00;
