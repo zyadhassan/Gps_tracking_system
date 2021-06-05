@@ -81,5 +81,13 @@ delay_micro(0);
 GPIO_PORTA_DATA_R =0x00;
 if(command <4) delay_milli(2); else delay_micro(37);
     }
+    
+void delay_milli(int n){
+int i,j;
+for(i=0;i<n;i++){
+    for(j=0;j<3180;j++)
+{}
+}
+}
 }
 }
