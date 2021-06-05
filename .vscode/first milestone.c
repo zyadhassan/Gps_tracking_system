@@ -22,10 +22,8 @@ GPIO_PORTF_AMSEL_R=0; // all digital
 GPIO_PORTF_DIR_R=0x0E; //f1 & f2 & f3 output 
 GPIO_PORTF_DEN_R=0X1F; //all pins digital
 GPIO_PORTF_PUR_R=0x11; // on for first and last pin
-
 //we now will comment
-
-
-
-
+}
+float radians(float n) {
+    return n * 3.141592654 / 180; // to be used in calculation of distance 
 }
