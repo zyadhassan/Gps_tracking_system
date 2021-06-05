@@ -1,15 +1,11 @@
 #include <stdio.h>
 #include <math.h>
-
 #include"stdint.h"
 #include"math.h"
-
 #include"C:/Keil/EE319Kware/inc/tm4c123gh6pm.h"
-
 #define RED 0x02
 #define BLUE 0x04
 #define GREEN 0x08
-
 void init(){
 SYSCTL_RCGCGPIO_R |=0x20 ;
 while((SYSCTL_PRGPIO_R & 0x20)==0){};
@@ -26,7 +22,6 @@ GPIO_PORTF_PUR_R=0x11; // on for first and last pin
 float radians(float n) {         // to be used in calculation of distance
     return n * 3.141592654 / 180; 
 }
-
 float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // return distancce between two points with coordinates
   float distance = radians(long1-long2);     
   float sdlong = sin(distance);
