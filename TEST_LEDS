@@ -42,5 +42,25 @@ init();
 
 
 
+	
+	else if ((GPIO_PORTF_DATA_R&0x11)==0x00)//LED 3 IS ON WHEN PIN 0&4 IS OFF
+	{
+	
+	(GPIO_PORTF_DATA_R=GREEN);
+		GPIO_PORTF_DATA_R=0x00;
+	
+	}
+	
+	else
+	//	LEDS ARE OFF WHEN PIN 0 AND 4 ARE OFF
+	
+		(GPIO_PORTF_DATA_R=0x00);
+
+	
+	
+	
+	}
+
+}
 
 
