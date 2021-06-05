@@ -23,7 +23,7 @@ GPIO_PORTF_DIR_R=0x0E; //f1 & f2 & f3 output
 GPIO_PORTF_DEN_R=0X1F; //all pins digital
 GPIO_PORTF_PUR_R=0x11; // on for first and last pin
 
-
+//we now will comment only
 
 
 
