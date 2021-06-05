@@ -50,29 +50,31 @@ For Testing
 GPS_distance_between (30.02350, 31.178291, 30.003019, 31.177931) ;
 
 */
-int totalDis(){
+int Total_Distance(){
 int x;
-if ((GPIO_PORTF_DATA_R&0x11)==0x01) //switch of pin 5
+float long2 ;
+float lat2 ;
+float lat1 ;               
+float long1 ;       
+float totalDistance = 0.0;
+if ((GPIO_PORTF_DATA_R&0x11)==0x01) //switch of pin 0 to start calculate distance and Recieve coordinates
    {
 x=1;
-
+long2 = GPS_LONG(); // update data from gps
+lat2 = GPS_LAT();   // update data from gps
+lat1 = GPS_LAT();   // update data from gps
+long1 = GPS_LONG(); // update data from gps
 }
 while (x){
-float long2=0.0;
-float lat2=0.0;
-
-float lat1=0.0 ;               //GPS_LAT()
-
-float long1= 0.0   ;       //GPS_LONG()
-float totalDistance=0.0;
-float distance =    GPS_distance_between(lat1,long1,lat2,long2);
+float distance = GPS_distance_between(lat1,long1,lat2,long2);
 totalDistance=totalDistance+distance;
 long2=long1;
 lat2=lat1;
-if ((GPIO_PORTF_DATA_R&0x11)==0x10) {
+long1 = GPS_LONG(); // update data from gps 
+lat1 = GPS_LAT();   // update data from gps
+if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of the total distane taken 
            x=0;
-           return totalDistance;
-
+           return totalDistance; // Return toatal distance 
 }
 }
 }
