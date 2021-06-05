@@ -98,7 +98,7 @@ for(j=0;j<3;j++)
 {}
 }
 
-
+//know we will make the data function of the lcd
 void LCD_DATA(unsigned char data) {
     GPIO_PORTA_DATA_R = 0x20; //RS=1, E=0,RW=0
     GPIO_PORTB_DATA_R = data;
