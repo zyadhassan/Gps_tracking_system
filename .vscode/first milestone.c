@@ -72,6 +72,8 @@ if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of t
            return totalDistance; // Return toatal distance 
 }
 }
+}
+
     void LCD_COMM(unsigned char command)
 {
 GPIO_PORTA_DATA_R = 0x00; //RS =0, E=0, RW=0
