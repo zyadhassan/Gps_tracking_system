@@ -27,3 +27,35 @@ GPIO_PORTF_PUR_R=0x11; // on for first and last pin
 float radians(float n) {
     return n * 3.141592654 / 180; // to be used in calculation of distance 
 }
+// GPS_distance_between (30.02350, 31.178291, 30.003019, 31.177931) ;
+
+float GPS_distance_between (float lat1,float long1,float lat2,float long2) {
+  // Courtesy of Maarten Lamers
+
+ // float lat1=30.002350;
+  //float lat2 =30.003019;
+  //float long1=31.178291;
+  //float long2=31.177931;
+
+
+
+  float delta = radians(long1-long2);
+  float sdlong = sin(delta);
+  float cdlong = cos(delta);
+  lat1 = radians(lat1);
+  lat2 = radians(lat2);
+  float slat1 = sin(lat1);
+  float clat1 = cos(lat1);
+  float slat2 = sin(lat2);
+  float clat2 = cos(lat2);
+  delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
+  delta = pow(delta,2);
+  delta += pow(clat2 * sdlong,2);
+  delta = sqrt(delta);
+  float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+  delta = atan2(delta, denom);
+  return ( delta * 6372795);
+
+
+
+}
