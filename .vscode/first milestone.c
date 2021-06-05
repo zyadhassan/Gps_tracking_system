@@ -97,3 +97,13 @@ for(i=0;i<n;i++)
 for(j=0;j<3;j++)
 {}
 }
+
+
+void LCD_DATA(unsigned char data) {
+    GPIO_PORTA_DATA_R = 0x20; //RS=1, E=0,RW=0
+    GPIO_PORTB_DATA_R = data;
+    GPIO_PORTA_DATA_R |= 0x80;
+    GPIO_PORTA_DATA_R = 0x00;
+    delay_micro(0);
+
+}
