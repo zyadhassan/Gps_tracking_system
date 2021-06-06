@@ -124,8 +124,11 @@ LCD_COMM(0x01); //clear the screen
 
 }
 
-
-
+    
+    // we will cut the 3 digits into 3 numbers 
+    //we will make 3 functions to have hundreds and tens and ones
+    //the function which return the hundreds is
+    //the return is added with 48 to be shown correctly in the lcd
 
     int hund(int distance) {
 
