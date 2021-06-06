@@ -43,7 +43,7 @@ float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // 
 For Testing 
 GPS_distance_between (30.02350, 31.178291, 30.003019, 31.177931) ;
 */
-int Total_Distance(){
+int Total_Distance(){ //be commented to test the code 
 int x;
 float long2 ;
 float lat2 ;
