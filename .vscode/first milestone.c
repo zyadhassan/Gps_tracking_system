@@ -132,14 +132,24 @@ LCD_COMM(0x01); //clear the screen
 
     int hund(int distance) {
 
-
-        int xx = distance / 100;  //hundreds
-
-
-        int y = distance / 10;
-        int z = xx * 10;
-        int q = y - z;   //tens
-        int v = y * 10;  //450
-        int n = distance - v;
-        return (xx + 48);
+// if distance = 452
+        int xx = distance / 100;  //hundreds, xx = 4
+        int y = distance / 10; // y = 45
+        int z = xx * 10; // z = 40
+        int q = y - z;   //tens, q = 45 - 40 = 5
+        int v = y * 10;  //  v = 450
+        int n = distance - v; // ones, n = 452 - 450 = 2
+        return (xx + 48); // to get the ascii code of the desired no. for printing it on the LCD later
     }
+
+    int tens(int distance){
+
+// if distance = 452
+        int xx =distance/100;  //hundreds, xx = 4
+        int y =distance/10;  // y = 45
+        int z = xx *10;  // z = 40
+        int q =y-z;   //tens, q = 45 - 40 = 5
+        int v=y*10; // v = 450
+        int n= distance - v; // ones, n = 452 - 450 = 2
+        return (q+48); // to get the ascii code of the desired no. for printing it on the LCD later
+}
