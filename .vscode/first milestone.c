@@ -6,10 +6,18 @@
 #define RED 0x02
 #define BLUE 0x04
 #define GREEN 0x08
+
+int main(){
+    init();
+    LCD_INITIALIZATION();
+    int oo= 3* GPS_distance_between(30.002350,31.178291,30.003019,31.177931);
+     led_100(oo);
+     LCD_PRINT_Distance(hund(oo),tens(oo),ones(oo));
+    return 0;}
+
 void init(){
 SYSCTL_RCGCGPIO_R |=0x20 ;
 while((SYSCTL_PRGPIO_R & 0x20)==0){};
-
 GPIO_PORTF_LOCK_R=0x4C4F434B; 
 GPIO_PORTF_CR_R=0x1F; //on for all pins
 GPIO_PORTF_AFSEL_R=0; //no AF
@@ -24,7 +32,7 @@ float radians(float n) {         // to be used in calculation of distance
 }
 float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // return distancce between two points with coordinates
   float distance = radians(long1-long2);         //difference between longs with radians
-  float sdlong = sin(distance);                 //we will prepare the parameters of the law 
+  float sdlong = sin(distance);                 
   float cdlong = cos(distance);
   lat1 = radians(lat1);              //lat1 in radians
   lat2 = radians(lat2);                    //lat2 in radians 
@@ -38,7 +46,7 @@ float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // 
   distance = sqrt(distance);
   float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
   distance = atan2(distance, denom);
-  return ( distance * 6372795);                   //finally we have the result of distance between two points 
+  return ( distance * 6372795);                   //the result of distance between two points 
 }
 /*
 For Testing 
@@ -54,6 +62,7 @@ float totalDistance = 0.0;
 if ((GPIO_PORTF_DATA_R&0x11)==0x01) //switch of pin 0 to start calculate distance and Recieve coordinates
    {
 x=1;
+    led_Start_finish(1);
 long2 = GPS_LONG(); // update data from gps
 lat2 = GPS_LAT();   // update data from gps
 lat1 = GPS_LAT();   // update data from gps
@@ -69,6 +78,7 @@ long1 = GPS_LONG(); // update data from gps
 lat1 = GPS_LAT();   // update data from gps
 if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of the total distane taken 
            x=0;
+    led_Start_finish(0);
            return totalDistance; // Return toatal distance 
 }
 }
@@ -180,21 +190,17 @@ void LCD_PRINT_Distance(int hundreds, int tens, int ones) {        //Taking numb
      delay_milli(1);
      LCD_DATA('m');
      delay_milli(1);
-     delay_milli(500);
-}
-
-
-//function to turn on the green LED when the distance exceeds 100 meters
-
-void led_100(int dis) {
-
+     delay_milli(500);}
+void led_100(int dis) {  //function to turn on the green LED when the distance exceeds 100 meters
     if (dis >= 100) {
         GPIO_PORTF_DATA_R = GREEN;
-
-
     }
 }
-
+void led_Start_finish(int x) {  //function to turn on the blue LED when starting calculate distance and turn off at the End point 
+    if (x == 1) {
+        GPIO_PORTF_DATA_R = BLUE;
+    }
+}
 
 
 
