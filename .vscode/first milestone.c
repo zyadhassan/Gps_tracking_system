@@ -167,3 +167,24 @@ int ones(int distance){
     return (n+48); //from data sheet of LCD
 
 }
+
+
+//after we cut the 3 digits
+
+//now we will make a function to print the distance
+void LCD_PRINT(int hundreds, int tens, int ones) {
+
+
+    LCD_COMM(0x01);
+    LCD_COMM(0x80);
+    delay_milli(500);
+
+
+
+
+
+
+
+
+
+}
