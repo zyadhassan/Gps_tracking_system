@@ -183,6 +183,16 @@ void LCD_PRINT_Distance(int hundreds, int tens, int ones) {        //Taking numb
      delay_milli(500);}
 
 
+//function to turn on the green LED when the distance exceeds 100 meters
+
+void led_100(int dis) {
+
+    if (dis >= 100) {
+        GPIO_PORTF_DATA_R = GREEN;
+
+
+    }
+}
 
 
 
