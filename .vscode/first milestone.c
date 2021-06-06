@@ -6,15 +6,6 @@
 #define RED 0x02
 #define BLUE 0x04
 #define GREEN 0x08
-
-int main(){
-    init();
-    LCD_INITIALIZATION();
-    int oo= 3* GPS_distance_between(30.002350,31.178291,30.003019,31.177931);
-     led_100(oo);
-     LCD_PRINT_Distance(hund(oo),tens(oo),ones(oo));
-    return 0;}
-
 void init(){
 SYSCTL_RCGCGPIO_R |=0x20 ;
 while((SYSCTL_PRGPIO_R & 0x20)==0){};
@@ -201,10 +192,3 @@ void led_Start_finish(int x) {  //function to turn on the blue LED when starting
         GPIO_PORTF_DATA_R = BLUE;
     }
 }
-
-
-
-
-
-
-
