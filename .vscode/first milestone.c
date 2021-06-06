@@ -194,6 +194,14 @@ void LCD_PRINT(int hundreds, int tens, int ones) {
     delay_milli(1);
     LCD_DATA('e');
     delay_milli(1);
+    LCD_DATA(' ');
+    delay_milli(1);
+    LCD_DATA(49+9);
+    delay_milli(1);
+    LCD_DATA(' ');
+    delay_milli(1);
+    LCD_DATA(hundreds);
+    delay_milli(1);
 
 
 
