@@ -153,3 +153,17 @@ LCD_COMM(0x01); //clear the screen
         int n= distance - v; // ones, n = 452 - 450 = 2
         return (q+48); // to get the ascii code of the desired no. for printing it on the LCD later
 }
+int ones(int distance){
+
+
+    int xx =distance/100;  //hundreds
+
+
+    int y =distance/10;
+    int z = xx *10;
+    int q =y-z;   //tens
+    int v=y*10;  //450
+    int n= distance - v;
+    return (n+48); //from data sheet of LCD
+
+}
