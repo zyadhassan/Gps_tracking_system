@@ -43,7 +43,6 @@ float GPS_distance_between (float lat1,float long1,float lat2,float long2) { // 
 /*
 For Testing 
 GPS_distance_between (30.02350, 31.178291, 30.003019, 31.177931) ;
-
 */
 int Total_Distance(){
 int x;
@@ -63,6 +62,7 @@ long1 = GPS_LONG(); // update data from gps
 while (x){
 float distance = GPS_distance_between(lat1,long1,lat2,long2);
 totalDistance=totalDistance+distance;
+    delay_milli(500);
 long2=long1;
 lat2=lat1;
 long1 = GPS_LONG(); // update data from gps 
@@ -82,12 +82,11 @@ for(i=0;i<n;i++){
 }
 void delay_micro(int n){
 int i,j;
-for(i=0;i<n;i++)
+for(i=0;i<n;i++){
 for(j=0;j<3;j++)
 {}
 }
-
-
+}
     void LCD_COMM(unsigned char command)
 {
 GPIO_PORTA_DATA_R = 0x00; //RS =0(command)
@@ -98,15 +97,12 @@ GPIO_PORTA_DATA_R =0x00; //E=0 to law
 if(command <4) delay_milli(2); else delay_micro(37);  //from data sheet
     }
     
-
-//know we will make the data function of the lcd
-void LCD_DATA(unsigned char data) {
+void LCD_DATA(unsigned char data) { //the data function of the lcd
     GPIO_PORTA_DATA_R = 0x20; //RS=1(data)
     GPIO_PORTB_DATA_R = data; //data wich appear on the screen
     GPIO_PORTA_DATA_R |= 0x80; // E high
     GPIO_PORTA_DATA_R = 0x00; // E law
     delay_micro(0);
-
 }
 // A7 for Enable , A5 for RS , A6 for RW(=0)
 // portB for D0toD7
@@ -121,60 +117,36 @@ LCD_COMM(0x38); //using 8_bit
 LCD_COMM(0x06); //shifting from right to lift automatically
 LCD_COMM(0x0F); //wake up display
 LCD_COMM(0x01); //clear the screen
-
-}
-
-    
-    // we will cut the 3 digits into 3 numbers 
-    //we will make 3 functions to have hundreds and tens and ones
-    //the function which return the hundreds is
-    //the return is added with 48 to be shown correctly in the lcd
-
+}   
+// to print the number of distance on LCD screen , get them in three digits 
     int hund(int distance) {
-
-// if distance = 452
-        int xx = distance / 100;  //hundreds, xx = 4
-        int y = distance / 10; // y = 45
-        int z = xx * 10; // z = 40
-        int q = y - z;   //tens, q = 45 - 40 = 5
-        int v = y * 10;  //  v = 450
-        int n = distance - v; // ones, n = 452 - 450 = 2
-        return (xx + 48); // to get the ascii code of the desired no. for printing it on the LCD later
+        int xx = distance / 100;  
+        int y = distance / 10; 
+        int z = xx * 10; 
+        int q = y - z;   
+        int v = y * 10;  
+        int n = distance - v; 
+        return (xx + 48);      // returning the first digit (the hundreds digit ) ....... 48 is the offest of number to print on LCD screen 
     }
-
     int tens(int distance){
-
-// if distance = 452
-        int xx =distance/100;  //hundreds, xx = 4
-        int y =distance/10;  // y = 45
-        int z = xx *10;  // z = 40
-        int q =y-z;   //tens, q = 45 - 40 = 5
-        int v=y*10; // v = 450
-        int n= distance - v; // ones, n = 452 - 450 = 2
-        return (q+48); // to get the ascii code of the desired no. for printing it on the LCD later
+        int xx =distance/100; 
+        int y =distance/10;  
+        int z = xx *10;  
+        int q =y-z;   
+        int v=y*10; 
+        int n= distance - v; 
+        return (q+48); // returning the second digit (the tens digit ) ....... 48 is the offest of number to print on LCD screen 
 }
 int ones(int distance){
-
-
-    int xx =distance/100;  //hundreds
-
-
+    int xx =distance/100;  
     int y =distance/10;
     int z = xx *10;
-    int q =y-z;   //tens
-    int v=y*10;  //450
+    int q =y-z;   
+    int v=y*10;  
     int n= distance - v;
-    return (n+48); //from data sheet of LCD
-
+    return (n+48);   // returning the third digit (the ones digit ) ....... 48 is the offest of number to print on LCD screen 
 }
-
-
-//after we cut the 3 digits
-
-//now we will make a function to print the distance
-void LCD_PRINT(int hundreds, int tens, int ones) {
-
-
+void LCD_PRINT_Distance(int hundreds, int tens, int ones) {        //Taking number of three digits reprsenting distance 
     LCD_COMM(0x01);
     LCD_COMM(0x80);
     delay_milli(500);
@@ -202,6 +174,13 @@ void LCD_PRINT(int hundreds, int tens, int ones) {
     delay_milli(1);
     LCD_DATA(hundreds);
     delay_milli(1);
+    LCD_DATA(tens);
+     delay_milli(1);
+     LCD_DATA(ones);
+     delay_milli(1);
+     LCD_DATA('m');
+     delay_milli(1);
+     delay_milli(500);}
 
 
 
@@ -211,4 +190,4 @@ void LCD_PRINT(int hundreds, int tens, int ones) {
 
 
 
-}
+
