@@ -178,6 +178,22 @@ void LCD_PRINT(int hundreds, int tens, int ones) {
     LCD_COMM(0x01);
     LCD_COMM(0x80);
     delay_milli(500);
+    LCD_DATA('D');
+    delay_milli(1);
+    LCD_DATA('i');
+    delay_milli(1);
+    LCD_DATA('s');
+    delay_milli(1);
+    LCD_DATA('t');
+    delay_milli(1);
+    LCD_DATA('a');
+    delay_milli(1);
+    LCD_DATA('n');
+    delay_milli(1);
+    LCD_DATA('c');
+    delay_milli(1);
+    LCD_DATA('e');
+    delay_milli(1);
 
 
 
