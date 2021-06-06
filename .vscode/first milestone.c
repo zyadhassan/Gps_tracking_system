@@ -180,7 +180,8 @@ void LCD_PRINT_Distance(int hundreds, int tens, int ones) {        //Taking numb
      delay_milli(1);
      LCD_DATA('m');
      delay_milli(1);
-     delay_milli(500);}
+     delay_milli(500);
+}
 
 
 //function to turn on the green LED when the distance exceeds 100 meters
