@@ -123,3 +123,20 @@ LCD_COMM(0x0F); //wake up display
 LCD_COMM(0x01); //clear the screen
 
 }
+
+
+
+
+    int hund(int distance) {
+
+
+        int xx = distance / 100;  //hundreds
+
+
+        int y = distance / 10;
+        int z = xx * 10;
+        int q = y - z;   //tens
+        int v = y * 10;  //450
+        int n = distance - v;
+        return (xx + 48);
+    }
