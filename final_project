@@ -148,5 +148,10 @@ LCD_COMM(0x38); //8-bits,2 display lines, 5x7 font
 LCD_COMM(0x06); //increments automatically
 LCD_COMM(0x0F); //Turn on display
 LCD_COMM(0x01); //clear display
-
 }
+void LCD_DATA(unsigned char data) { GPIO_PORTA_DATA_R =0x20; //RS=1, E=0,RW=0
+    GPIO_PORTB_DATA_R =data;
+    GPIO_PORTA_DATA_R |= 0x80;
+    GPIO_PORTA_DATA_R =0x00;
+    delay_micro(0);
+    }
