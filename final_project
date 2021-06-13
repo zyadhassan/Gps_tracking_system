@@ -47,7 +47,26 @@ GPIO_PORTF_DIR_R=0x0E;
 GPIO_PORTF_DEN_R=0x1F;
 GPIO_PORTF_PUR_R=0x11;
 //GPIO_PORTF_DATA_R&=0x0E;
-
-
+}
+double radians(double n){
+      return n*3.141592654/180;
+}
+double GPS_distance_between (double lat1,double long1,double lat2,double long2) {
+  double delta = radians(long1-long2);
+  double sdlong = sin(delta);
+  double cdlong = cos(delta);
+  lat1 = radians(lat1);
+  lat2 = radians(lat2);
+  double slat1 = sin(lat1);
+  double clat1 = cos(lat1);
+  double slat2 = sin(lat2);
+  double clat2 = cos(lat2);
+  delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
+  delta = pow(delta,2);
+  delta += pow(clat2 * sdlong,2);
+  delta = sqrt(delta);
+  double denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+  delta = atan2(delta, denom);
+  return ( delta * 6372795);
 }
 
