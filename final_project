@@ -34,7 +34,6 @@ void UART_Init(void)
 
 }
 
-<<<<<<< HEAD
 
 
 
@@ -170,7 +169,7 @@ void LCD_DATA(unsigned char data) { GPIO_PORTA_DATA_R =0x20; //RS=1, E=0,RW=0
 
 
 
-
+//delay milli
 
 
 
@@ -272,3 +271,20 @@ void main(){
      exit:
      while((GPIO_PORTF_DATA_R&0x11)!=0x01){}
     //  double totalDistance = 0.0;
+    
+     //switch of pin 0 to start calculate distance and Recieve coordinates
+     exit:
+     while((GPIO_PORTF_DATA_R&0x11)!=0x01){}
+    //  double totalDistance = 0.0;
+
+         led_Start_finish(1);
+         GPS_cordinates(&a,&b);
+     lg2 = b; // update data from gps
+     lt2 = a;   // update data from gps
+     lt1 = a;   // update data from gps
+     lg1 = b; // update data from gps
+     
+     //while
+     
+     
+     
