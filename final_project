@@ -44,14 +44,6 @@ void UART_Init(void)
 
 
 
-void delay_micro(int n){
-int i,j;
-for(i=0;i<n;i++)
-for(j=0;j<3;j++)
-{}
-}
-
-=======
 void init(){
 SYSCTL_RCGCGPIO_R |=0x20 ;
 while((SYSCTL_PRGPIO_R & 0x20)==0){};
@@ -173,4 +165,53 @@ void LCD_DATA(unsigned char data) { GPIO_PORTA_DATA_R =0x20; //RS=1, E=0,RW=0
     GPIO_PORTA_DATA_R =0x00;
     delay_micro(0);
     }
->>>>>>> 3c74e8959f2648f3d4d53373287d20ed14919915
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void delay_micro(int n){
+int i,j;
+for(i=0;i<n;i++)
+for(j=0;j<3;j++)
+{}
+}
+
+
+
+
+double radians(double n){
+
+      return n*3.141592654/180;
+}
+
+double GPS_distance_between (double lat1,double long1,double lat2,double long2) {
+
+  double delta = radians(long1-long2);
+  double sdlong = sin(delta);
+  double cdlong = cos(delta);
+  lat1 = radians(lat1);
+  lat2 = radians(lat2);
+  double slat1 = sin(lat1);
+  double clat1 = cos(lat1);
+  double slat2 = sin(lat2);
+  double clat2 = cos(lat2);
+  delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
+  delta = pow(delta,2);
+  delta += pow(clat2 * sdlong,2);
+  delta = sqrt(delta);
+  double denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+  delta = atan2(delta, denom);
+  return ( delta * 6372795);
+
+}
