@@ -288,3 +288,25 @@ void main(){
      
      
      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of the total distance taken
+         led_Start_finish(0);
+         led_100(totalDistance);
+         delay_milli(5000);
+         goto exit;
+     }
+}
+}
