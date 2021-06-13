@@ -141,6 +141,23 @@ double GPS_cordinates(double *lat_do, double *long_do)
                             *long_do=degrees2+seconds2;
                         }
                     }
+                    // we will take actions depending on dumm_var
+                    if(dumm_var == ',')
+                    {
+                        comm++ ;
+                    }
+                    if(dumm_var == '*')
+                    {
+                        end = false ;
+                        goto main;
+                    }
+            }
+
+        }
+    }}
+ main:
+    return 0;
+}
         
 double radians(double n){
       return n*3.141592654/180;
