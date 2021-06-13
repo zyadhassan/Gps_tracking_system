@@ -245,3 +245,11 @@ void led_100(double dis) {  //function to turn on the green LED when the distanc
     }
 }
 
+void led_Start_finish(int x) {  //function to turn on the blue LED when starting calculate distance and turn off at the End point
+    if (x == 1) {
+        GPIO_PORTF_DATA_R = BLUE;
+    }
+    else{
+        GPIO_PORTF_DATA_R = 0x00;
+    }
+}
