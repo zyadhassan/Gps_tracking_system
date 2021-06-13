@@ -397,6 +397,17 @@ void main(){
      lg1 = b; // update data from gps
      
      //while
+     while (1){
+     double distance = GPS_distance_between(lt1,lg1,lt2,lg2) ;
+     totalDistance=totalDistance+distance;
+     LCD_PRINT (totalDistance);
+     lg2=lg1;
+     lt2=lt1;
+     // while((GPIO_PORTF_DATA_R&0x11)!=0x01){}
+     delay_milli(5000);
+     GPS_cordinates(&a,&b);
+     lg1 = b; // update data from gps
+     lt1 = a;   // update data from gps
      
      
      
