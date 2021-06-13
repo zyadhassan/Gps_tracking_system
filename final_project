@@ -10,6 +10,8 @@
 #define RED 0x02
 #define BLUE 0x04
 #define GREEN 0x08
+
+
 void UART_Init(void)
     {
      SYSCTL_RCGCUART_R |= 0X0020 ;                            //enable clock of UART5
@@ -17,11 +19,12 @@ void UART_Init(void)
       while((SYSCTL_PRGPIO_R&0x0010)==0){};                   //delay
 
 
+
 /* UART5 Setting */
-     UART5_CTL_R &= ~0x0001 ;                              //disable UART 
+     UART5_CTL_R &= ~0x0001 ;                                 //disable UART 
          UART5_IBRD_R = 0x68 ;                                //IBRD = system clock / (16 * clock div) 
-     UART5_FBRD_R = 0x0B ;                                 // FBDR = round ( 0.16667 * 64)+0.5
-         UART5_LCRH_R = 0x0070;                                // set 8 bits for length , FIFO enable , one stop , no parity 
+     UART5_FBRD_R = 0x0B ;                                    // FBDR = round ( 0.16667 * 64)+0.5
+         UART5_LCRH_R = 0x0070;                               // set 8 bits for length , FIFO enable , one stop , no parity 
          UART5_CTL_R = 0x0301 ;                               //enable UARTEN , TXE and RXE */
 
 
