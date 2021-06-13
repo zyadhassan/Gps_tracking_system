@@ -239,5 +239,9 @@ void LCD_PRINT (double distance){
 
 
 }
-
+void led_100(double dis) {  //function to turn on the green LED when the distance exceeds 100 meters
+    if (dis >= 100) {
+        GPIO_PORTF_DATA_R = GREEN;
+    }
+}
 
