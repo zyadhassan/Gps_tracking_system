@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <math.h>
+#include "stdint.h"
+#include "stdbool.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include"math.h"
+#include "inc/tm4c123gh6pm.h"
+#define RED 0x02
+#define BLUE 0x04
+#define GREEN 0x08
+
