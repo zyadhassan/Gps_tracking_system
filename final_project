@@ -129,6 +129,18 @@ double GPS_cordinates(double *lat_do, double *long_do)
                             *lat_do=degrees1+seconds1;
                         }
                     }
+                    if(comm == 3)           //getting longitude
+                    {
+                        if(dumm_var != ',')  //condition to prevent ',' because at the end of longitude ',' will enter the outer condition
+                        {
+                            strncat(longt, &dumm_var, 1);
+                            *long_do =atof( longt);
+                            int  degrees2=*long_do/100;
+                            double minutes2=*long_do-(double)(degrees2*100);
+                            double seconds2=minutes2/60.00;
+                            *long_do=degrees2+seconds2;
+                        }
+                    }
         
 double radians(double n){
       return n*3.141592654/180;
