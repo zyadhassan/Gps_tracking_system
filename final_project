@@ -99,6 +99,24 @@ double GPS_cordinates(double *lat_do, double *long_do)
         while ((UART5_FR_R & 0x10) != 0)
         {}
         sx_ch = UART5_DR_R&0xFF;
+        // condition to check if we in the $GPGLL
+        if(sec_ch == 'G' && thr_ch == 'P' && frth_ch == 'G' && ffth_ch == 'L' && sx_ch == 'L')
+        {
+
+            // know we know that we are in the line of $GPGLL
+
+
+
+            // we want to extract latitude and longitude.
+
+            int comm = 0;                       //counter for ','
+            bool end = true ;               // variable to check if we've ended the nmea cordinates
+            // itrative loop to get the values that we need from the cordinats
+            while(end == true)
+                {
+                    while ((UART5_FR_R & 0x10) != 0)
+                    {}
+                    dumm_var = UART5_DR_R&0xFF;
         
 double radians(double n){
       return n*3.141592654/180;
