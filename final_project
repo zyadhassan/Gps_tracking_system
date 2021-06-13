@@ -117,6 +117,18 @@ double GPS_cordinates(double *lat_do, double *long_do)
                     while ((UART5_FR_R & 0x10) != 0)
                     {}
                     dumm_var = UART5_DR_R&0xFF;
+                    if(comm == 1)       //getting latitude
+                    {
+                        if(dumm_var != ',') //condition to prevent ',' because at the end of latitude ',' will enter the outer condition
+                        {
+                            strncat(lat, &dumm_var, 1);
+                            *lat_do = atof(lat);
+                            int  degrees1= *lat_do/100;
+                            double minutes1=*lat_do-(double)(degrees1*100);
+                            double seconds1=minutes1/60.00;
+                            *lat_do=degrees1+seconds1;
+                        }
+                    }
         
 double radians(double n){
       return n*3.141592654/180;
