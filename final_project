@@ -253,3 +253,22 @@ void led_Start_finish(int x) {  //function to turn on the blue LED when starting
         GPIO_PORTF_DATA_R = 0x00;
     }
 }
+
+void main(){
+
+     init();
+     LCD_INITIALIZATION();
+     UART_Init();
+     double lg2 ;
+     double lt2 ;
+     double lt1 ;
+     double lg1 ;
+     double a;
+     double b;
+
+    double totalDistance = 0.0;
+
+     //switch of pin 0 to start calculate distance and Recieve coordinates
+     exit:
+     while((GPIO_PORTF_DATA_R&0x11)!=0x01){}
+    //  double totalDistance = 0.0;
