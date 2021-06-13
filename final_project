@@ -70,3 +70,60 @@ double GPS_distance_between (double lat1,double long1,double lat2,double long2) 
   return ( delta * 6372795);
 }
 
+int hund(double distance){
+    int xx;
+    int y;
+    int z;
+    int q;
+    int v;
+    int n;
+
+    xx =(int) (distance/100);  //hundreds
+    y =(int) (distance/10);
+    z = (int) xx *10;
+    q = (int) (y-z);   //tens
+    v=(int) (y*10);  //450
+    n= (int) (distance - v);
+    return (xx+48);
+}
+
+
+
+int tens(double distance){
+    int xx;
+    int y;
+    int z;
+    int q;
+    int v;
+    int n;
+
+    xx =(int) (distance/100);  //hundreds
+    y =(int) (distance/10);
+    z = (int) xx *10;
+    q = (int) (y-z);   //tens
+    v=(int) (y*10);  //450
+    n= (int) (distance - v);
+    return (q+48);
+}
+
+
+
+int ones(double distance){
+    int xx;
+    int y;
+    int z;
+    int q;
+    int v;
+    int n;
+
+    xx =(int) (distance/100);  //hundreds
+    y =(int) (distance/10);
+    z = (int) xx *10;
+    q = (int) (y-z);   //tens
+    v=(int) (y*10);  //450
+    n= (int) (distance - v);
+    return (n+48);
+
+}
+
+
