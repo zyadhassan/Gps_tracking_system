@@ -37,15 +37,6 @@ void UART_Init(void)
 
 }
 
-
-
-
-
-
-
-
-
-
 void init(){
 SYSCTL_RCGCGPIO_R |=0x20 ;
 while((SYSCTL_PRGPIO_R & 0x20)==0){};
@@ -275,21 +266,8 @@ for(i=0;i<n;i++){
 {}
 }
 }
-    
-
-
-
-
-
+   
 //delay milli
-
-
-
-
-
-
-
-
 
 void delay_micro(int n){
 int i,j;
@@ -297,8 +275,6 @@ for(i=0;i<n;i++)
 for(j=0;j<3;j++)
 {}
 }
-
-
 
 void LCD_PRINT (double distance){
     int h;
@@ -344,9 +320,6 @@ void LCD_PRINT (double distance){
      delay_milli(1);
 
      delay_milli(500);
-
-
-
 
 
 }
@@ -408,23 +381,7 @@ void main(){
      GPS_cordinates(&a,&b);
      lg1 = b; // update data from gps
      lt1 = a;   // update data from gps
-     
-     
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     if ((GPIO_PORTF_DATA_R&0x11)==0x10) { // switch of pin 4 to end calculation of the total distance taken
          led_Start_finish(0);
          led_100(totalDistance);
